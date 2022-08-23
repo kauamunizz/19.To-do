@@ -1,0 +1,30 @@
+.main {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .centro {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 500px;
+    width: 500px;
+    border-radius: 39px;
+    background: #ffffff;
+    box-shadow:  27px 27px 54px #a1a1a1, -27px -27px 54px #ffffff;
+
+    .add {
+      margin: 40px 30px;
+
+      input, button {
+        padding: 20px 50px;
+        font-size: 15px;
+      }
+    }
+    .task{
+      display: flex;
+    }
+  }
+}
