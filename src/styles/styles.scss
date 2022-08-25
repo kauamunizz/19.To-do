@@ -1,13 +1,15 @@
-.main {
-  height: 90vh;
+body{
+  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Inter', sans-serif;
 
-  .centro {
+  .main{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-direction: column;
     align-items: flex-start;
     height: 500px;
     width: 500px;
@@ -15,16 +17,81 @@
     background: #ffffff;
     box-shadow:  27px 27px 54px #a1a1a1, -27px -27px 54px #ffffff;
 
-    .add {
+    form{
       margin: 40px 30px;
 
-      input, button {
+      *{
         padding: 20px 50px;
         font-size: 15px;
+        border: none;
+      }
+      input {
+        border-radius: 21px;
+        background: #e0e0e0;
+        box-shadow: inset 9px 9px 18px #b9c3c2,
+          inset -9px -9px 18px #fdfdfd;
+
+        &:focus {
+          outline: 1px solid #b9c3c2;
+        }
+
+        &::placeholder {
+          opacity: .7;
+        }
+      }
+
+      button{
+        border-radius: 18px;
+        background: #e0e0e0;
+        box-shadow: inset 14px 14px 28px #b9c3c2, inset -14px -14px 28px #ffffff;
+
+        &:hover {
+          filter: brightness(1.02);
+        }
       }
     }
-    .task{
-      display: flex;
+    
+    .myTask{
+      width: calc(100% - 80px);
+      padding: 0 40px;
+      font-weight: inherit;
+      
+      .task{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        border-radius: 21px;
+        background: #e0e0e0;
+        box-shadow: inset 9px 9px 18px #b9c3c2, inset -9px -9px 18px #fdfdfd;
+
+        label{
+          display: flex;
+          cursor: pointer;
+
+          &.checked {
+            text-decoration: line-through;
+          }
+
+          input{
+            margin: 0 15px;
+            cursor: pointer;
+          }
+        }
+
+        button{
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          transition: scale .5s;
+          img{
+            width: 40px;
+          }
+
+          &:hover {
+            scale: 1.2;
+          }
+        }
+      }
     }
   }
 }
