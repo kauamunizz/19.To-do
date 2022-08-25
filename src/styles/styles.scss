@@ -1,35 +1,48 @@
+// @import '../../node_modules/reset-css';
+
+* {
+  box-sizing: border-box;
+}
+
 body{
   height: 100vh;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Inter', sans-serif;
+  margin: 0;
+  background: var(--light-color);
+
 
   .main{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    align-items: flex-start;
-    height: 500px;
+    align-items: center;
+    min-height: 500px;
     width: 500px;
     border-radius: 39px;
-    background: #ffffff;
-    box-shadow:  27px 27px 54px #a1a1a1, -27px -27px 54px #ffffff;
+    box-shadow: inset 2px 2px 10px #31363841, inset -2px -2px 10px #e8e9eb2a;
 
     form{
-      margin: 40px 30px;
+      margin: 40px 0 20px;
+      display: flex;
 
       *{
         padding: 20px 50px;
         font-size: 15px;
         border: none;
+        color: #313638;
+        font-size: 1.2rem;
       }
       input {
-        border-radius: 21px;
-        background: #e0e0e0;
-        box-shadow: inset 9px 9px 18px #b9c3c2,
-          inset -9px -9px 18px #fdfdfd;
+        height: 4rem;
+        padding-left: 20px;
+        box-shadow: inset 2px 2px 10px #31363841,
+          inset -2px -2px 10px  #e8e9eb2a;
+        background: #e8e9eb2a;
+        border-radius: 10px;
+        margin-right: 10px;
 
         &:focus {
           outline: 1px solid #b9c3c2;
@@ -42,30 +55,42 @@ body{
 
       button{
         border-radius: 18px;
-        background: #e0e0e0;
-        box-shadow: inset 14px 14px 28px #b9c3c2, inset -14px -14px 28px #ffffff;
+        box-shadow: inset 2px 2px 10px #31363841,
+          inset -2px -2px 10px  #e8e9eb2a;
+        background: #e8e9eb2a;
+        cursor: pointer;
 
         &:hover {
-          filter: brightness(1.02);
+          filter: brightness(1.05);
         }
       }
     }
     
     .myTask{
-      width: calc(100% - 80px);
+      width: 100%;
       padding: 0 40px;
       font-weight: inherit;
       
+      .completo {
+        display: flex;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: inset 2px 2px 10px #31363841,
+          inset 2px 2px 10px #e8e9eb2a;
+        text-decoration: line-through;
+      }
+
       .task{
         display: flex;
-        justify-content: space-between;
         margin-bottom: 10px;
-        border-radius: 21px;
-        background: #e0e0e0;
-        box-shadow: inset 9px 9px 18px #b9c3c2, inset -9px -9px 18px #fdfdfd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px #31363841,
+          2px 2px 16px #e8e9eb2a;
+        }
 
         label{
           display: flex;
+          flex: 1;
           cursor: pointer;
 
           &.checked {
@@ -76,21 +101,27 @@ body{
             margin: 0 15px;
             cursor: pointer;
           }
+
+          h2 {
+            text-shadow: 2px 2px 3px #31363841;
+            font-size: 18px;
+            font-weight: 400;
+          }
         }
 
         button{
           border: none;
           background: transparent;
           cursor: pointer;
-          transition: scale .5s;
+          
           img{
-            width: 40px;
-          }
+            width: 35px;
+            transition: scale .5s;
 
-          &:hover {
-            scale: 1.2;
+            &:hover {
+              scale: 1.2;
+            }
           }
-        }
       }
     }
   }

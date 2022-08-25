@@ -1,5 +1,4 @@
 import '../styles/styles.scss';
-// import '../../node_modules/reset-css';
 
 "strict mode"
 
@@ -9,12 +8,25 @@ const main = (() => {
         list: []
     }
 
+    function saveLocalStorage() {
+        const tasksStr = JSON.stringify(state.list);
+
+        localStorage.setItem('@todo:list', tasksStr);
+    }
+
+    function loadLocalStorage() {
+        const tasksStr = localStorage.getItem('@todo:list');
+        const loadedTasks = JSON.parse(tasksStr);
+
+        state.list = loadedTasks;
+    }
+
 
     function createTask(text) {
         const newTask = {
             id: Date.now(),
             task: text,
-            checked: false
+            marcado: false
         }
 
         state.list.push(newTask);
@@ -22,15 +34,17 @@ const main = (() => {
     }
 
     function renderTask() {
+        saveLocalStorage();
+
         const { list } = state;
         const container = document.querySelector('.myTask');
         container.innerHTML = '';
 
-        list.forEach(({id, task, checked}) => {
+        list.forEach(({id, task, marcado}) => {
             document.querySelector('.myTask').insertAdjacentHTML('beforeend', `
-            <li class="task" data-id=${id}>
-                <label class=${checked ? 'checked' : ''}>
-                    <input type="checkbox" name='checkbox' ${checked ? 'checked' : ''}>
+            <li class="${marcado ? 'completo' : 'task'}" data-id=${id}>
+                <label class="${marcado ? 'checked' : ''}">
+                    <input type="checkbox" name='checkbox' ${marcado ? 'checked' : ''}>
                     <h2>${task}</h2>
                 </label>
                 <button>
@@ -42,14 +56,14 @@ const main = (() => {
     }
 
     function updateTask(id, checked) {
-        const task = state.list.find(f => f.id === id);
+        const task = state.list.find(atual => atual.id === Number(id));
 
-        task.checked = checked;
-        renderTask()
+        task.marcado = checked;
+        renderTask();
     }
 
     function deleteTask(id) {
-        state.list = state.list.filter(f => f.id !== Number(id))
+        state.list = state.list.filter(atual => atual.id !== Number(id));
         renderTask();
     }
 
@@ -67,13 +81,13 @@ const main = (() => {
 
             if (click.classList.contains('remove')){
                 const lista = click.closest('li');
-                const id = Number(lista.dataset.id);
+                const id = lista.dataset.id;
 
                 deleteTask(id);
             }
             else if (click.tagName === 'INPUT'){
                 const lista = click.closest('li');
-                const id = Number(lista.dataset.id);
+                const id = lista.dataset.id;
 
                 updateTask(id, click.checked);
             }
@@ -82,7 +96,8 @@ const main = (() => {
 
 
     function init() {
-        
+        loadLocalStorage();
+        renderTask();
         events();
     }
 
