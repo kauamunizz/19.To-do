@@ -157,7 +157,7 @@ body{
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
     margin: 0 5px;
 
@@ -176,6 +176,9 @@ body{
       .myTask {
         padding: 0 30px;
 
+        h1 {
+          font-size: 18px;
+        }
         .task {
           margin-bottom: 15px;
         }
