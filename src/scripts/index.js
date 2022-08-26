@@ -16,7 +16,7 @@ const main = (() => {
 
     function loadLocalStorage() {
         const tasksStr = localStorage.getItem('@todo:list');
-        const loadedTasks = JSON.parse(tasksStr);
+        const loadedTasks = tasksStr ? JSON.parse(tasksStr) : [];
         state.list = loadedTasks;
 
         renderTask();
