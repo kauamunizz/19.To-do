@@ -17,10 +17,10 @@ const main = (() => {
     function loadLocalStorage() {
         const tasksStr = localStorage.getItem('@todo:list');
         const loadedTasks = JSON.parse(tasksStr);
-
         state.list = loadedTasks;
-    }
 
+        renderTask();
+    }
 
     function createTask(text) {
         const newTask = {
@@ -40,19 +40,27 @@ const main = (() => {
         const container = document.querySelector('.myTask');
         container.innerHTML = '';
 
-        list.forEach(({id, task, marcado}) => {
-            document.querySelector('.myTask').insertAdjacentHTML('beforeend', `
-            <li class="${marcado ? 'completo' : 'task'}" data-id=${id}>
-                <label class="${marcado ? 'checked' : ''}">
-                    <input type="checkbox" name='checkbox' ${marcado ? 'checked' : ''}>
-                    <h2>${task}</h2>
-                </label>
-                <button>
-                    <img class="remove" src="./src/assets/icons8-remove-48.svg" alt="remove">
-                </button>
-            </li>
-            `)
-        });
+        if (list.length) {
+            list.forEach(({id, task, marcado}) => {
+                container.insertAdjacentHTML('beforeend', `
+                    <li class="${marcado ? 'completo' : 'task'}" data-id=${id}>
+                        <label class="${marcado ? 'checked' : ''}">
+                            <input type="checkbox" name='checkbox' ${marcado ? 'checked' : ''}>
+                            <h2>${task}</h2>
+                        </label>
+                        <button>
+                            <img class="remove" src="/icons8-remove-48.svg" alt="remove">
+                        </button>
+                    </li>
+                `);
+            });
+        }
+        else {
+            container.insertAdjacentHTML('beforeend', `
+                <h1>Lista vazia</h1>
+            `);
+        }
+
     }
 
     function updateTask(id, checked) {
@@ -74,6 +82,7 @@ const main = (() => {
 
             const { text } = document.forms.form;
             createTask(text.value);
+            text.value = '';
         } )
         
         document.querySelector('.myTask').addEventListener('click', event => {
@@ -97,7 +106,6 @@ const main = (() => {
 
     function init() {
         loadLocalStorage();
-        renderTask();
         events();
     }
 
