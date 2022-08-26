@@ -57,7 +57,7 @@ const main = (() => {
         }
         else {
             container.insertAdjacentHTML('beforeend', `
-                <h1>Lista vazia</h1>
+                <h1>Você ainda não possui tarefas 🙁</h1>
             `);
         }
 

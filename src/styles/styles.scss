@@ -9,7 +9,6 @@ body{
   justify-content: center;
   font-family: 'Inter', sans-serif;
   margin: 0;
-  // background: var(--light-color);
 
 
   .main{
@@ -69,6 +68,14 @@ body{
       padding: 0 40px;
       font-weight: inherit;
       
+      h1{
+        display: flex;
+        justify-content: center;
+        color: #313638;
+        opacity: .7;
+        font-size: 20px;
+      }
+
       .completo {
         display: flex;
         margin-bottom: 10px;
@@ -90,14 +97,39 @@ body{
           display: flex;
           flex: 1;
           cursor: pointer;
-
+          align-items: center;
+          
+          
           &.checked {
             text-decoration: line-through;
+            position: relative;
+
+            &::after {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 18px;
+              left: 22px;
+              width: 3px;
+              height: 10px;
+              border: solid #0079bf;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
           }
 
           input{
             margin: 0 15px;
             cursor: pointer;
+            content: "";
+            -webkit-appearance: none;
+            background-color: transparent;
+            border: 2px solid #0079bf;
+            box-shadow: 0 1px 2px rgb(0 0 0 / 5%), inset 0px -15px 10px -12px rgb(0 0 0 / 5%);
+            padding: 7px;
+            display: inline-block;
+            vertical-align: middle;
+            height: 10px;
           }
 
           h2 {
@@ -121,6 +153,33 @@ body{
             }
           }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 0 5px;
+
+    .main {
+      min-height: 450px;
+      width: 99%;
+
+      form {
+        * {
+          padding: 18px;
+          font-size: 1.1rem;
+        }
+
+      }
+
+      .myTask {
+        padding: 0 30px;
+
+        .task {
+          margin-bottom: 15px;
+        }
+      } 
     }
   }
 }
